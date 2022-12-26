@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body class="bg-dark">
+<div style="margin-top: 10%;">
+   <div class="bg-light container rounded" style="height: 400px; width: 40%;">
+    <center>
+        <div class="p-5 text-dark">
+            <span><h1>The selected date is as follows:</h1></span>
+            <input type="text" class="disableFuturedate form-control border border-info">
+        </div>
+    </center>
+   </div>
+</div>
+<script>
+   $(document).ready(function () {
+      var currentDate = new Date();
+      $('.disableFuturedate').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose:true,
+      endDate: "currentDate",
+      maxDate: currentDate
+      }).on('changeDate', function (ev) {
+         $(this).datepicker('hide');
+      });
+      $('.disableFuturedate').keyup(function () {
+         if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9^-]/g, '');
+         }
+      });
+   });
+</script>
+</body>
+</html>
